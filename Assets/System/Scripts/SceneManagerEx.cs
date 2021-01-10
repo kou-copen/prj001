@@ -16,9 +16,9 @@ namespace MyGame.System
         /// シーンの非同期読み込み
         /// </summary>
         /// <param name="inSceneName"></param>
-        public void LoadSceneAsync(string inSceneName)
+        public void LoadSceneAsync(string inSceneName, LoadSceneMode inLoadSceneMode = LoadSceneMode.Single)
         {
-            StartCoroutine(LoadSceneCoroutine(inSceneName));
+            StartCoroutine(LoadSceneCoroutine(inSceneName, inLoadSceneMode));
         }
 
         /// <summary>
@@ -26,9 +26,9 @@ namespace MyGame.System
         /// </summary>
         /// <param name="inSceneName"></param>
         /// <returns></returns>
-        private IEnumerator LoadSceneCoroutine(string inSceneName)
+        private IEnumerator LoadSceneCoroutine(string inSceneName, LoadSceneMode inLoadSceneMode)
         {
-            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(inSceneName, LoadSceneMode.Additive);
+            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(inSceneName, inLoadSceneMode);
             while (!asyncLoad.isDone)
             {
                 yield return null;
